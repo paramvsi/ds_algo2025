@@ -21,9 +21,24 @@ public class A03KthMaxAndMinElem {
         return maxHeap.peek();
     }
 
+    public static int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        for (int num : nums) {
+            minHeap.add(num);
+
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        return minHeap.peek();
+    }
+
     public static void main(String[] args) {
         int[] arr = {7, 10, 4, 3, 20, 15};
         int k = 3;
         System.out.println("The " + k + "th smallest element is: " + findKthSmallest(arr, k));
+        System.out.println("The " + k + "th largest element is: " + findKthLargest(arr, k));
     }
 }
